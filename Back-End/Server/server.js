@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 const express = require('express');
 const app = express();
@@ -6,7 +7,8 @@ const PORT = 5000;
 const bodyparser = require('body-parser')
 const mysql = require('mysql');
 var expressValidator = require('express-validator');
-const expressSession = require('express-session')
+const expressSession = require('express-session');
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
   extended: true
@@ -16,14 +18,14 @@ app.use(expressValidator({save:"Theapp",saveUninitialized:false,resave:false}));
 const connection = mysql.createConnection({
     host : 'localhost',
     user:'root',
-    password:"1111",
+    password:"123456",
    database: 'fdp'
 });
 // HRLLO
 const UsersConection = mysql.createConnection({
   host : 'localhost',
   user:'root',
-  password:"1111",
+  password:"123456",
  database: 'users'
 });
 app.use(function(req, res, next) {
@@ -35,7 +37,7 @@ app.use(function(req, res, next) {
 app.post('/getMealsByPrice',(req,res) =>{
   const price =req.body.price;
  
-    let serchItem = `SELECT  m.name as mealName,r.name as restName,mt.size, price,r.id as restId
+    let serchItem = ` SELECT  m.name as mealName,r.name as restName,mt.size, price,r.id as restId
     FROM restmealmenue rmm
     Inner Join restaurants r on (rmm.RestId = r.Id)
     Inner Join mealtype mt on (rmm.MealTypeId = mt.Id)
@@ -44,7 +46,7 @@ app.post('/getMealsByPrice',(req,res) =>{
     +` group by m.name, r.name, mt.size, price
     order by m.name, r.name, mt.size, price`;
  
- connection.query(serchItem,(err,result)=>{
+ connection.query(serchItem,(err,result)=> {
     if(err) throw err;
     console.log(result);
     res.send(result)
@@ -59,6 +61,8 @@ app.post('/getMealsByPrice',(req,res) =>{
     let serchItem = `SELECT r.name, phone, address
     FROM restaurants r
     Where r.Id = N'` + restId + `'`;
+
+    
  
  connection.query(serchItem,(err,result)=>{
     if(err) throw err;
@@ -84,7 +88,7 @@ app.use(express.static('public'))
 
 //////////////////////////////////////// USER AREA//////////////////////////
 app.get('/registered',(req,res)=>{
-  res.render('index',{title:"TheUserInfo",success:req.session.success,errors:req.session.errors});
+  res.render('index',{title:"TheUserInfo", success:req.session.success  , errors:req.session.errors });
   req.session.errors = null;
 })
 app.post('/registered', function(req, res,next) {
