@@ -12,6 +12,7 @@ fetch(url)
 .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 
 class Food extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +74,9 @@ class Food extends React.Component {
   }
 
   sendPriceToServer(e) {
+
     e.preventDefault();
+    
     var body = {
       price: this.state.Price
     }

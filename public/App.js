@@ -2,13 +2,13 @@ import React from 'react';
 // import ReactDOM from 'react-dom'
 import './App.css';
 import { BrowserRouter , Route } from 'react-router-dom';
-import Food from './components/food.jsx';
+import Food from '../src/components/food.jsx';
 // import Err from './components/404Page.jsx';
-import Navgation from './components/Nav.jsx';
-import Login from './components/login.jsx';
-import register from './components/registered.jsx';
-import ThankYouPage from './components/ThankYouPage.jsx';
-import WeclomePage from './components/WelcomePage.jsx';
+import Navgation from '../src/components/Nav.jsx';
+import Login from '../src/components/login.jsx';
+import register from '../src/components/registered.jsx';
+import ThankYouPage from '../src/components/ThankYouPage.jsx';
+import WeclomePage from '../src/components/WelcomePage.jsx';
 
 
 
